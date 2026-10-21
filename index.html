@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VEILOT</title>
+  <meta name="description" content="VEILOT uncovers the security risks hidden inside connected devices - from medical equipment and vehicles to security cameras - across device, firmware, network and cloud.">
+  <meta name="theme-color" content="#FFFFFF">
+  <link rel="icon" type="image/png" href="assets/brand/veilot-icon.png">
+  <script>document.documentElement.classList.add("js");</script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Oxanium:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="VEILOT home">
+        <img src="assets/brand/veilot-logo.png" alt="VEILOT" width="954" height="259">
+      </a>
+
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="#problem">Problem</a></li>
+          <li><a href="#approach">Approach</a></li>
+          <li><a href="#process">How it works</a></li>
+          <li><a href="#devices">Devices</a></li>
+          <li><a href="#platform">Platform</a></li>
+        </ul>
+        <a class="btn btn--primary btn--sm nav-cta" href="#contact">Connect With Us</a>
+      </nav>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="nav-toggle__bars" aria-hidden="true"></span>
+        <span class="visually-hidden">Menu</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ HERO / SCANNER ============ -->
+    <section class="hero" id="hero" aria-labelledby="hero-title">
+      <canvas class="hero__field" id="scan-field" aria-hidden="true"></canvas>
+
+      <div class="container hero__inner">
+        <div class="hero__content" id="hero-content">
+          <p class="eyebrow"><span class="eyebrow__mark" aria-hidden="true"></span>IOT SECURITY. BEYOND THE VISIBLE.</p>
+          <h1 class="hero__title" id="hero-title">Uncover risks. Secure&nbsp;devices.</h1>
+          <p class="hero__lead">VEILOT brings hidden weak spots in connected devices to the surface and helps your team fix them before attackers do.</p>
+          <div class="hero__actions">
+            <a class="btn btn--primary btn--cta" href="#contact">Connect With Us</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Four signals hidden in the grid; the scanner reveals them (positioned by js/scanner.js) -->
+      <ol class="hero__signals" aria-label="What VEILOT does">
+        <li class="signal"><span class="signal__num">01</span>Every connected device identified</li>
+        <li class="signal"><span class="signal__num">02</span>Vulnerabilities found early</li>
+        <li class="signal"><span class="signal__num">03</span>Critical risks prioritized</li>
+        <li class="signal"><span class="signal__num">04</span>Security issues resolved faster</li>
+      </ol>
+    </section>
+
+    <!-- ============ LAYERS ============
+         One light-grey container, four equal cells: the layers VEILOT covers.
+         Informational only, nothing here is clickable. -->
+    <section class="layers-strip" id="layers" aria-labelledby="layers-title">
+      <div class="container layers">
+        <h2 class="eyebrow layers__title" id="layers-title" data-reveal>SECURITY AT EVERY LAYER</h2>
+        <ul class="layers__list" data-reveal>
+          <li class="layer">
+            <svg class="glyph layer__glyph" viewBox="0 0 48 48" aria-hidden="true">
+              <rect x="12" y="4" width="24" height="40" />
+              <path d="M20 10 H28" />
+              <rect class="g-fill" x="20" y="28" width="8" height="8" />
+            </svg>
+            <span class="layer__name">Device</span>
+          </li>
+          <li class="layer">
+            <svg class="glyph layer__glyph" viewBox="0 0 48 48" aria-hidden="true">
+              <rect x="12" y="12" width="24" height="24" />
+              <path d="M18 4 V12 M30 4 V12 M18 36 V44 M30 36 V44 M4 18 H12 M4 30 H12 M36 18 H44 M36 30 H44" />
+              <rect class="g-fill" x="20" y="20" width="8" height="8" />
+            </svg>
+            <span class="layer__name">Firmware</span>
+          </li>
+          <li class="layer">
+            <svg class="glyph layer__glyph" viewBox="0 0 48 48" aria-hidden="true">
+              <rect x="4" y="6" width="10" height="10" /><rect x="34" y="6" width="10" height="10" />
+              <path d="M14 11 H34 M9 16 V37 H19 M39 16 V37 H29" />
+              <rect class="g-fill" x="19" y="32" width="10" height="10" />
+            </svg>
+            <span class="layer__name">Network</span>
+          </li>
+          <li class="layer">
+            <svg class="glyph layer__glyph" viewBox="0 0 48 48" aria-hidden="true">
+              <path d="M4 38 V26 H10 V18 H20 V10 H32 V20 H38 V26 H44 V38 Z" />
+              <rect class="g-fill" x="20" y="24" width="8" height="8" />
+            </svg>
+            <span class="layer__name">Cloud</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ 01 PROBLEM ============ -->
+    <section class="section" id="problem" aria-labelledby="problem-title">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow" data-reveal><span class="eyebrow__mark" aria-hidden="true"></span>01 / The problem</p>
+          <h2 class="section-title" id="problem-title" data-reveal>More connected devices. More blind&nbsp;spots.</h2>
+          <p class="section-lead" data-reveal>Devices ship fast and stay in service for years, often without a security review. Each one is a possible way in.</p>
+        </div>
+
+        <div class="problem-grid">
+          <figure class="visibility" data-reveal aria-labelledby="visibility-caption">
+            <div class="visibility__map" id="visibility-map" aria-hidden="true"></div>
+            <figcaption class="visibility__legend" id="visibility-caption">
+              <span class="legend-item"><span class="legend-swatch legend-swatch--known"></span>Seen by traditional tools</span>
+              <span class="legend-item"><span class="legend-swatch legend-swatch--unknown"></span>Connected, but unexamined</span>
+              <span class="legend-item"><span class="legend-swatch legend-swatch--risk"></span>Exploitable weakness</span>
+            </figcaption>
+          </figure>
+
+          <ul class="problem-list">
+            <li class="problem-item" data-reveal>
+              <span class="problem-item__mark" aria-hidden="true"></span>
+              <div>
+                <h3>Weaknesses ship with the product</h3>
+                <p>Default passwords, outdated components and unsigned firmware are built in at the factory.</p>
+              </div>
+            </li>
+            <li class="problem-item" data-reveal>
+              <span class="problem-item__mark" aria-hidden="true"></span>
+              <div>
+                <h3>Invisible to standard tools</h3>
+                <p>Most IoT devices can't run security agents, and many never make it into the asset inventory.</p>
+              </div>
+            </li>
+            <li class="problem-item" data-reveal>
+              <span class="problem-item__mark" aria-hidden="true"></span>
+              <div>
+                <h3>A way into everything else</h3>
+                <p>One exposed camera, monitor or charger can open a path to the systems behind it.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 02 APPROACH / LIFECYCLE ============
+         One stage at a time. With the cursor over the interactive area, the
+         mouse wheel steps through the stages; at the first or last stage the
+         page scrolls on as normal. Stage labels, the arrow buttons and
+         horizontal swipes (touch) also move between stages. -->
+    <section class="section approach" id="approach" aria-labelledby="approach-title">
+      <div class="container">
+        <div class="approach__head">
+          <p class="eyebrow eyebrow--dark" data-reveal><span class="eyebrow__mark" aria-hidden="true"></span>02 / Our approach</p>
+          <h2 class="section-title" id="approach-title" data-reveal>Security that starts before the device&nbsp;ships.</h2>
+          <p class="section-lead" data-reveal>Most tools only see a device once it's on the network.<br>VEILOT covers its whole life, so flaws are removed while it's still simple to do.</p>
+        </div>
+
+        <div class="approach__interactive" id="approach-interactive" data-reveal>
+          <div class="approach__line">
+            <span class="approach__rail" aria-hidden="true"><span class="approach__fill"></span></span>
+            <span class="approach__marker" aria-hidden="true"></span>
+            <div class="approach__steps" role="group" aria-label="Lifecycle stages">
+              <button class="astep is-active is-reached" type="button" data-step="0" aria-current="step" aria-controls="astage-0"><span class="astep__node" aria-hidden="true"></span><span class="astep__label">Design</span></button>
+              <button class="astep" type="button" data-step="1" aria-controls="astage-1"><span class="astep__node" aria-hidden="true"></span><span class="astep__label">Build</span></button>
+              <button class="astep" type="button" data-step="2" aria-controls="astage-2"><span class="astep__node" aria-hidden="true"></span><span class="astep__label">Deploy</span></button>
+              <button class="astep" type="button" data-step="3" aria-controls="astage-3"><span class="astep__node" aria-hidden="true"></span><span class="astep__label">Operate</span></button>
+            </div>
+          </div>
+
+          <div class="approach__stage" aria-live="polite">
+            <article class="astage is-active" id="astage-0">
+              <p class="astage__kicker">Stage 01</p>
+              <h3 class="astage__title">Component review</h3>
+              <p class="astage__text">Chipsets, libraries and protocols are vetted before your team commits to them.</p>
+              <p class="astage__effort"><span class="astage__effort-label">Effort to fix</span><b>Lowest</b><span class="effort-bars" data-level="1" aria-hidden="true"><i></i><i></i><i></i><i></i></span></p>
+            </article>
+            <article class="astage" id="astage-1">
+              <p class="astage__kicker">Stage 02</p>
+              <h3 class="astage__title">Firmware analysis</h3>
+              <p class="astage__text">Every build is scanned for vulnerable code and hidden passwords.</p>
+              <p class="astage__effort"><span class="astage__effort-label">Effort to fix</span><b>Low</b><span class="effort-bars" data-level="2" aria-hidden="true"><i></i><i></i><i></i><i></i></span></p>
+            </article>
+            <article class="astage" id="astage-2">
+              <p class="astage__kicker">Stage 03</p>
+              <h3 class="astage__title">Exposure check</h3>
+              <p class="astage__text">Settings and open services are verified as each device goes live.</p>
+              <p class="astage__effort"><span class="astage__effort-label">Effort to fix</span><b>High</b><span class="effort-bars" data-level="3" aria-hidden="true"><i></i><i></i><i></i><i></i></span></p>
+            </article>
+            <article class="astage" id="astage-3">
+              <p class="astage__kicker">Stage 04</p>
+              <h3 class="astage__title">Continuous monitoring</h3>
+              <p class="astage__text">Device behavior is watched, and new vulnerabilities are matched to your fleet.</p>
+              <p class="astage__effort"><span class="astage__effort-label">Effort to fix</span><b>Highest</b><span class="effort-bars" data-level="4" aria-hidden="true"><i></i><i></i><i></i><i></i></span></p>
+            </article>
+          </div>
+
+          <div class="approach__controls">
+            <span class="approach__count" aria-hidden="true"><b id="approach-index">01</b> / 04</span>
+            <button class="approach__arrow" type="button" data-dir="-1" aria-label="Previous stage" disabled>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12 H6 M11 6 L5 12 L11 18" /></svg>
+            </button>
+            <button class="approach__arrow" type="button" data-dir="1" aria-label="Next stage">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12 H18 M13 6 L19 12 L13 18" /></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 03 PROCESS ============
+         Desktop: heading and a vertical step list on the left; the selected
+         step's animation and short description on the right.
+         Mobile: the steps become a compact selector above the animation. -->
+    <section class="section process-section" id="process" aria-labelledby="process-title">
+      <div class="container">
+        <div class="process" data-reveal>
+          <div class="process__nav">
+            <div class="section-head process__head">
+              <p class="eyebrow"><span class="eyebrow__mark" aria-hidden="true"></span>03 / How it works</p>
+              <h2 class="section-title" id="process-title">From unknown device to resolved&nbsp;risk.</h2>
+            </div>
+
+            <div class="process__tabs" role="tablist" aria-label="How it works, step by step" aria-orientation="vertical" data-tabs="process">
+              <span class="process__progress" aria-hidden="true"><span class="process__progress-fill"></span></span>
+              <button class="process__tab" role="tab" id="tab-discover" aria-controls="panel-discover" aria-selected="true">
+                <span class="process__num">01</span><span class="process__name">Discover</span>
+              </button>
+              <button class="process__tab" role="tab" id="tab-analyze" aria-controls="panel-analyze" aria-selected="false" tabindex="-1">
+                <span class="process__num">02</span><span class="process__name">Analyze</span>
+              </button>
+              <button class="process__tab" role="tab" id="tab-prioritize" aria-controls="panel-prioritize" aria-selected="false" tabindex="-1">
+                <span class="process__num">03</span><span class="process__name">Prioritize</span>
+              </button>
+              <button class="process__tab" role="tab" id="tab-mitigate" aria-controls="panel-mitigate" aria-selected="false" tabindex="-1">
+                <span class="process__num">04</span><span class="process__name">Mitigate</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="process__panels">
+            <!-- Discover -->
+            <div class="process__panel" role="tabpanel" id="panel-discover" aria-labelledby="tab-discover" tabindex="0">
+              <div class="process__visual" aria-hidden="true">
+                <svg class="diagram diagram--discover" viewBox="0 0 400 280">
+                  <g class="d-frame">
+                    <path d="M40 40 H70 M40 40 V70" /><path d="M360 40 H330 M360 40 V70" />
+                    <path d="M40 240 H70 M40 240 V210" /><path d="M360 240 H330 M360 240 V210" />
+                  </g>
+                  <g class="d-nodes">
+                    <rect x="64" y="76" width="32" height="32" style="--i:0" /><rect x="124" y="76" width="32" height="32" style="--i:3" class="is-ghost" /><rect x="184" y="76" width="32" height="32" style="--i:6" /><rect x="244" y="76" width="32" height="32" style="--i:9" /><rect x="304" y="76" width="32" height="32" style="--i:12" class="is-ghost" />
+                    <rect x="64" y="124" width="32" height="32" style="--i:1" /><rect x="124" y="124" width="32" height="32" style="--i:4" /><rect x="184" y="124" width="32" height="32" style="--i:7" class="is-ghost" /><rect x="244" y="124" width="32" height="32" style="--i:10" /><rect x="304" y="124" width="32" height="32" style="--i:13" class="is-ghost" />
+                    <rect x="64" y="172" width="32" height="32" style="--i:2" /><rect x="124" y="172" width="32" height="32" style="--i:5" /><rect x="184" y="172" width="32" height="32" style="--i:8" /><rect x="244" y="172" width="32" height="32" style="--i:11" class="is-ghost" /><rect x="304" y="172" width="32" height="32" style="--i:14" />
+                  </g>
+                  <rect class="d-sweep" x="40" y="40" width="4" height="200" />
+                </svg>
+              </div>
+              <div class="process__copy">
+                <h3>Build a live inventory</h3>
+                <p>Passive network analysis identifies every connected device, including the ones nobody registered.</p>
+              </div>
+            </div>
+
+            <!-- Analyze -->
+            <div class="process__panel" role="tabpanel" id="panel-analyze" aria-labelledby="tab-analyze" tabindex="0" hidden>
+              <div class="process__visual" aria-hidden="true">
+                <svg class="diagram diagram--analyze" viewBox="0 0 400 280">
+                  <rect class="d-device" x="40" y="96" width="88" height="88" />
+                  <path class="d-bracket" d="M108 76 H148 V116" />
+                  <g class="d-layers">
+                    <text x="180" y="78">FIRMWARE</text>
+                    <rect class="d-layer" x="180" y="86" width="180" height="20" style="--i:0" />
+                    <rect class="d-hit" x="290" y="86" width="40" height="20" />
+                    <text x="180" y="138">CONFIGURATION</text>
+                    <rect class="d-layer" x="180" y="146" width="180" height="20" style="--i:1" />
+                    <text x="180" y="198">TRAFFIC</text>
+                    <rect class="d-layer" x="180" y="206" width="180" height="20" style="--i:2" />
+                  </g>
+                  <rect class="d-scanline" x="176" y="60" width="2" height="176" />
+                </svg>
+              </div>
+              <div class="process__copy">
+                <h3>Inspect each device in depth</h3>
+                <p>Firmware, settings and traffic are checked for known vulnerabilities, hidden passwords and unusual behavior.</p>
+              </div>
+            </div>
+
+            <!-- Prioritize -->
+            <div class="process__panel" role="tabpanel" id="panel-prioritize" aria-labelledby="tab-prioritize" tabindex="0" hidden>
+              <div class="process__visual" aria-hidden="true">
+                <svg class="diagram diagram--prioritize" viewBox="0 0 400 280">
+                  <g class="d-rows">
+                    <text x="40" y="66">CRITICAL</text><rect class="d-bar d-bar--top" x="140" y="52" width="220" height="20" style="--i:0" />
+                    <text x="40" y="110">HIGH</text><rect class="d-bar" x="140" y="96" width="160" height="20" style="--i:1" />
+                    <text x="40" y="154">MEDIUM</text><rect class="d-bar" x="140" y="140" width="112" height="20" style="--i:2" />
+                    <text x="40" y="198">LOW</text><rect class="d-bar" x="140" y="184" width="64" height="20" style="--i:3" />
+                    <text x="40" y="242">INFO</text><rect class="d-bar" x="140" y="228" width="28" height="20" style="--i:4" />
+                  </g>
+                  <path class="d-bracket" d="M340 36 H372 V68" />
+                </svg>
+              </div>
+              <div class="process__copy">
+                <h3>Rank by real exposure</h3>
+                <p>Each finding is scored by how exploitable it is and what the device can reach, so teams fix what matters first.</p>
+              </div>
+            </div>
+
+            <!-- Mitigate -->
+            <div class="process__panel" role="tabpanel" id="panel-mitigate" aria-labelledby="tab-mitigate" tabindex="0" hidden>
+              <div class="process__visual" aria-hidden="true">
+                <svg class="diagram diagram--mitigate" viewBox="0 0 400 280">
+                  <g class="d-peers">
+                    <rect x="56" y="60" width="32" height="32" /><rect x="56" y="188" width="32" height="32" />
+                    <rect x="312" y="60" width="32" height="32" /><rect x="312" y="188" width="32" height="32" />
+                  </g>
+                  <g class="d-links">
+                    <path d="M88 76 L172 124" /><path d="M88 204 L172 156" /><path d="M312 76 L228 124" /><path d="M312 204 L228 156" />
+                  </g>
+                  <rect class="d-boundary" x="148" y="100" width="104" height="80" pathLength="1" />
+                  <rect class="d-target" x="176" y="116" width="48" height="48" />
+                  <path class="d-check" d="M188 140 L198 150 L214 130" pathLength="1" />
+                </svg>
+              </div>
+              <div class="process__copy">
+                <h3>Contain, then fix</h3>
+                <p>Isolate exposed devices through your network controls, then follow guided steps to patch and verify.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 04 DEVICES ============
+         Three full-bleed editorial image columns. Hover, focus or tap a column to
+         scan it: it widens and lifts, the photo turns from greyscale to colour,
+         a scan line passes over it and its short brief appears. -->
+    <section class="section section--soft devices-section" id="devices" aria-labelledby="devices-title">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow" data-reveal><span class="eyebrow__mark" aria-hidden="true"></span>04 / What we protect</p>
+          <h2 class="section-title" id="devices-title" data-reveal>Built for the devices you actually&nbsp;run.</h2>
+          <p class="section-lead" data-reveal>Every type of device fails in its own way. VEILOT checks for the weak points specific to each one.</p>
+        </div>
+      </div>
+
+      <div class="dcols" data-reveal>
+        <article class="dcol is-active" tabindex="0" aria-labelledby="dcol-medical">
+          <div class="dcol__media">
+            <div class="dcol__placeholder" aria-hidden="true"></div>
+            <img class="dcol__img" src="assets/devices/medical.png?v=1" alt="Patient monitor on a stand in a beam of light" width="1670" height="942" loading="lazy" style="--focus: 54% 45%">
+            <span class="dcol__scan" aria-hidden="true"></span>
+            <span class="dcol__mark" aria-hidden="true"></span>
+          </div>
+          <div class="dcol__panel">
+            <h3 class="dcol__title" id="dcol-medical"><span class="dcol__num">01</span>Medical devices</h3>
+            <div class="dcol__info">
+              <p class="dcol__scope">Patient monitors, infusion pumps and wearable sensors</p>
+              <ul class="risk-list">
+                <li>Unauthenticated device commands</li>
+                <li>Patient data exposed in transit</li>
+                <li>Legacy software that can't be patched</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="dcol" tabindex="0" aria-labelledby="dcol-vehicles">
+          <div class="dcol__media">
+            <div class="dcol__placeholder" aria-hidden="true"></div>
+            <img class="dcol__img" src="assets/devices/vehicles.png?v=1" alt="Electric car on an elevated road above a city" width="1670" height="942" loading="lazy" style="--focus: 44% 58%">
+            <span class="dcol__scan" aria-hidden="true"></span>
+            <span class="dcol__mark" aria-hidden="true"></span>
+          </div>
+          <div class="dcol__panel">
+            <h3 class="dcol__title" id="dcol-vehicles"><span class="dcol__num">02</span>Connected vehicles</h3>
+            <div class="dcol__info">
+              <p class="dcol__scope">Fleet telematics, EV chargers and in-vehicle systems</p>
+              <ul class="risk-list">
+                <li>Remote access through telematics units</li>
+                <li>Insecure over-the-air updates</li>
+                <li>Location and driver data leaks</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="dcol" tabindex="0" aria-labelledby="dcol-cameras">
+          <div class="dcol__media">
+            <div class="dcol__placeholder" aria-hidden="true"></div>
+            <img class="dcol__img" src="assets/devices/security_cameras.png?v=1" alt="Security camera mounted on a concrete wall" width="1670" height="942" loading="lazy" style="--focus: 50% 42%">
+            <span class="dcol__scan" aria-hidden="true"></span>
+            <span class="dcol__mark" aria-hidden="true"></span>
+          </div>
+          <div class="dcol__panel">
+            <h3 class="dcol__title" id="dcol-cameras"><span class="dcol__num">03</span>Security cameras</h3>
+            <div class="dcol__info">
+              <p class="dcol__scope">IP cameras, video recorders and the apps that view them</p>
+              <ul class="risk-list">
+                <li>Default and shared passwords</li>
+                <li>Live video streams left exposed</li>
+                <li>Hijacked into botnets</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="container">
+        <div class="devices-cta" data-reveal>
+          <div>
+            <p class="devices-cta__title">Protecting more than what you see.</p>
+            <p class="devices-cta__text">Securing other connected devices? Let's talk.</p>
+          </div>
+          <a class="btn btn--primary btn--cta" href="#contact">Connect With Us</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 05 PLATFORM / CAPABILITIES ============ -->
+    <section class="section" id="platform" aria-labelledby="platform-title">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow" data-reveal><span class="eyebrow__mark" aria-hidden="true"></span>05 / The platform</p>
+          <h2 class="section-title" id="platform-title" data-reveal>Capabilities for devices that can't protect&nbsp;themselves.</h2>
+        </div>
+
+        <ul class="caps">
+          <li class="cap" data-reveal>
+            <svg class="glyph" viewBox="0 0 48 48" aria-hidden="true">
+              <rect class="g-fill" x="6" y="26" width="12" height="12" />
+              <rect x="26" y="26" width="12" height="12" /><rect x="26" y="8" width="12" height="12" />
+              <path d="M6 16 V8 H14" />
+            </svg>
+            <h3>Agentless discovery</h3>
+            <p>Identifies and classifies devices from network traffic, without installing software on them.</p>
+          </li>
+          <li class="cap" data-reveal>
+            <svg class="glyph" viewBox="0 0 48 48" aria-hidden="true">
+              <path d="M6 10 H42 M6 22 H42 M6 34 H42" />
+              <rect class="g-fill" x="28" y="30" width="10" height="8" />
+            </svg>
+            <h3>Firmware analysis</h3>
+            <p>Inspects binaries for known vulnerabilities, hard-coded secrets and insecure components - before devices ship.</p>
+          </li>
+          <li class="cap" data-reveal>
+            <svg class="glyph" viewBox="0 0 48 48" aria-hidden="true">
+              <path d="M4 30 H14 V18 H24 V30 H34 V18 H44" />
+              <rect class="g-fill" x="30" y="6" width="8" height="8" />
+            </svg>
+            <h3>Behavioral baselines</h3>
+            <p>Learns how each device normally communicates and flags deviations as soon as they appear.</p>
+          </li>
+          <li class="cap" data-reveal>
+            <svg class="glyph" viewBox="0 0 48 48" aria-hidden="true">
+              <path d="M8 40 V30 M20 40 V22" />
+              <rect class="g-fill" x="28" y="8" width="12" height="32" />
+            </svg>
+            <h3>Context-aware scoring</h3>
+            <p>Weighs every finding by exploitability, network reach and the device's operational role.</p>
+          </li>
+          <li class="cap" data-reveal>
+            <svg class="glyph" viewBox="0 0 48 48" aria-hidden="true">
+              <rect class="g-fill" x="4" y="18" width="12" height="12" />
+              <path d="M16 24 H44" /><path d="M26 20 V28 M36 20 V28" />
+            </svg>
+            <h3>Full lifecycle coverage</h3>
+            <p>One view of risk from development builds to devices operating in the field.</p>
+          </li>
+          <li class="cap" data-reveal>
+            <svg class="glyph" viewBox="0 0 48 48" aria-hidden="true">
+              <rect x="6" y="18" width="12" height="12" />
+              <path d="M18 24 H30" />
+              <rect class="g-fill" x="30" y="18" width="12" height="12" />
+              <path d="M34 10 H42 V14" />
+            </svg>
+            <h3>Fits your security stack</h3>
+            <p>Sends findings to SIEM, SOAR, ticketing and network access control tools your teams already use.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT / CTA ============ -->
+    <section class="cta" id="contact" aria-labelledby="contact-title">
+      <canvas class="cta__grid" aria-hidden="true"></canvas>
+      <div class="container cta__inner">
+        <div class="cta__copy">
+          <p class="eyebrow eyebrow--dark" data-reveal><span class="eyebrow__mark" aria-hidden="true"></span>Connect With Us</p>
+          <h2 class="cta__title" id="contact-title" data-reveal>Find out what your network can't see&nbsp;yet.</h2>
+          <p class="cta__lead" data-reveal>Tell us about your device environment. We'll walk you through how VEILOT would map it, assess it and show you where to start.</p>
+        </div>
+
+        <form class="form" id="briefing-form" novalidate data-reveal>
+          <div class="form__body">
+            <div class="field">
+              <label for="f-name">Full name<span class="req" aria-hidden="true">*</span></label>
+              <input id="f-name" name="name" type="text" autocomplete="name" required>
+              <p class="field__error" id="f-name-err" aria-live="polite"></p>
+            </div>
+            <div class="field">
+              <label for="f-email">Work email<span class="req" aria-hidden="true">*</span></label>
+              <input id="f-email" name="email" type="email" autocomplete="email" required>
+              <p class="field__error" id="f-email-err" aria-live="polite"></p>
+            </div>
+            <div class="field">
+              <label for="f-company">Company<span class="req" aria-hidden="true">*</span></label>
+              <input id="f-company" name="company" type="text" autocomplete="organization" required>
+              <p class="field__error" id="f-company-err" aria-live="polite"></p>
+            </div>
+            <div class="field">
+              <label for="f-env">Main device environment<span class="req" aria-hidden="true">*</span></label>
+              <div class="select">
+                <select id="f-env" name="environment" required>
+                  <option value="" selected disabled>Select one</option>
+                  <option>Medical devices</option>
+                  <option>Connected vehicles</option>
+                  <option>Security cameras</option>
+                  <option>Several of these</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <p class="field__error" id="f-env-err" aria-live="polite"></p>
+            </div>
+            <div class="field field--full">
+              <label for="f-msg">What would you like to discuss? <span class="optional">Optional</span></label>
+              <textarea id="f-msg" name="message" rows="3"></textarea>
+            </div>
+            <button class="btn btn--lime btn--cta" type="submit">Connect With Us</button>
+          </div>
+
+          <div class="form__success" id="form-success" hidden tabindex="-1">
+            <span class="success-mark" aria-hidden="true"></span>
+            <h3>Request received.</h3>
+            <p>Thank you<span id="success-name"></span>. A VEILOT specialist will contact you to schedule your briefing.</p>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="assets/brand/veilot-logo.png" alt="VEILOT" width="954" height="259" loading="lazy">
+        <p class="footer-tagline">BEYOND THE VISIBLE.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer">
+        <ul>
+          <li><a href="#problem">Problem</a></li>
+          <li><a href="#approach">Approach</a></li>
+          <li><a href="#process">How it works</a></li>
+          <li><a href="#devices">Devices</a></li>
+          <li><a href="#platform">Platform</a></li>
+          <li><a href="#contact">Connect With Us</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="container footer-base">
+      <p>© <span id="year">2026</span> VEILOT Ltd. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <a class="back-to-top" href="#top" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19 V6 M6 11 L12 5 L18 11" /></svg>
+  </a>
+
+  <script src="js/scanner.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>

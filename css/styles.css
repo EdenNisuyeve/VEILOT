@@ -1,0 +1,744 @@
+/* ==========================================================================
+   VEILOT - Homepage styles
+   --------------------------------------------------------------------------
+   Design system
+   - Module: the lime square from the logo. All graphics are built from
+     squares, right angles and the open corner bracket (Icon_).
+   - Stroke: 2px for UI and icons; diagrams scale with their box (1.5 units ≈ 2px).
+   - Corners: square, everywhere.
+   - Colour: white dominant, deep teal for structure and type, lime only
+     for detection, the active state, and primary actions on dark.
+   ========================================================================== */
+
+:root {
+  /* Brand */
+  --white: #FFFFFF;
+  --teal: #0F2A2A;
+  --lime: #C5ED47;
+
+  /* Supporting neutrals (teal-tinted greys) */
+  --teal-90: #1C3838;
+  --teal-80: #2A4646;
+  --ink: var(--teal);
+  --ink-2: #4A5E5D;      /* secondary text - 7.0:1 on white */
+  --ink-3: #6F807F;      /* tertiary / meta - 4.6:1 on white */
+  --line: #DCE3E2;
+  --line-strong: #C3CDCC;
+  --tile: #F1F4F3;
+  --soft: #F6F8F7;
+  --lime-deep: #B3DB33;
+
+  /* Type */
+  /* Both families load as web fonts from Google Fonts (index.html, display=swap), so every
+     OS and browser gets the same type. The stacks below are only a safety net. */
+  --f-display: "Oxanium", "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --f-body: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  /* Two families only. Short uppercase labels use the display face. */
+  --f-label: var(--f-display);
+
+  /* Spacing - 8px base */
+  --s-1: 8px;  --s-2: 16px; --s-3: 24px; --s-4: 32px;
+  --s-5: 48px; --s-6: 64px; --s-7: 96px; --s-8: 128px;
+
+  --gutter: clamp(16px, 4vw, 40px);
+  --flow: clamp(64px, 8vw, 112px);   /* shared gap: hero > layers > problem */
+  --maxw: 1240px;
+  --header-h: 72px;
+  --stroke: 2px;
+
+  /* Motion */
+  --ease: cubic-bezier(.2, .7, .1, 1);
+  --ease-io: cubic-bezier(.65, 0, .35, 1);
+  --t-fast: 180ms;
+  --t-med: 420ms;
+  --t-slow: 800ms;
+}
+
+/* ---------- Reset / base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + 8px); }
+body {
+  margin: 0;
+  background: var(--white);
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+img, svg, canvas { display: block; max-width: 100%; }
+h1, h2, h3, p, ul, ol, figure { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+a { color: inherit; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+::selection { background: var(--lime); color: var(--teal); }
+[hidden] { display: none !important; }
+
+:focus-visible { outline: var(--stroke) solid var(--teal); outline-offset: 3px; }
+.cta :focus-visible { outline-color: var(--lime); }
+
+.visually-hidden {
+  position: absolute !important; width: 1px; height: 1px; margin: -1px; padding: 0;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.skip-link {
+  position: absolute; left: var(--s-2); top: -100px; z-index: 100;
+  background: var(--teal); color: var(--white); padding: 10px 16px; text-decoration: none;
+  font-weight: 500;
+}
+.skip-link:focus { top: var(--s-2); }
+
+.container { width: 100%; max-width: calc(var(--maxw) + var(--gutter) * 2); margin: 0 auto; padding: 0 var(--gutter); }
+
+/* ---------- Typography primitives ---------- */
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--f-label); font-size: 12px; font-weight: 500;
+  letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2);
+  margin-bottom: var(--s-3);
+}
+.eyebrow__mark { width: 8px; height: 8px; background: var(--lime); box-shadow: 0 0 0 1px rgba(15,42,42,.08); flex: none; }
+.eyebrow--dark { color: rgba(255,255,255,.72); }
+
+.section-title {
+  font-family: var(--f-display); font-weight: 500;
+  font-size: clamp(32px, 3.9vw, 54px); line-height: 1.06; letter-spacing: -.02em;
+  max-width: 18ch; text-wrap: balance;
+}
+.section-title--sm { font-size: clamp(26px, 2.6vw, 36px); max-width: 22ch; }
+.section-lead { font-size: clamp(17px, 1.35vw, 19px); color: var(--ink-2); max-width: 54ch; margin-top: var(--s-3); }
+
+/* ---------- Buttons ---------- */
+.btn {
+  --bg: var(--teal); --fg: var(--white);
+  position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+  min-height: 52px; padding: 0 26px;
+  background: var(--bg); color: var(--fg);
+  border: 0; text-decoration: none;
+  font-family: var(--f-body); font-size: 15px; font-weight: 500; letter-spacing: .01em;
+  transition: background-color var(--t-fast) var(--ease), color var(--t-fast) var(--ease);
+}
+/* The module square: appears on the primary actions, slides on hover */
+.btn--primary::after, .btn--lime::after {
+  content: ""; width: 8px; height: 8px; background: var(--lime);
+  transition: transform var(--t-med) var(--ease);
+}
+.btn--primary:hover { --bg: var(--teal-80); }
+.btn--primary:hover::after, .btn--lime:hover::after { transform: translateX(4px); }
+.btn--lime { --bg: var(--lime); --fg: var(--teal); }
+.btn--lime::after { background: var(--teal); }
+.btn--lime:hover { --bg: var(--lime-deep); }
+.btn--ghost { --bg: transparent; --fg: var(--teal); box-shadow: inset 0 0 0 1.5px var(--teal); }
+.btn--ghost:hover { --bg: var(--teal); --fg: var(--white); }
+.btn--sm { min-height: 44px; padding: 0 20px; font-size: 14px; }
+.btn--block { width: 100%; }
+/* One contact-button size everywhere ("Connect With Us"): the hero button is the reference.
+   Colour variants (primary on light, lime on dark) only change colour, never dimensions. */
+.btn--cta { min-height: 52px; padding: 0 26px; font-size: 15px; font-weight: 500; white-space: nowrap; }
+/* The header button keeps its slimmer nav size (.btn--sm); the mobile menu enlarges it below */
+.nav-cta { white-space: nowrap; }
+
+/* ==========================================================================
+   Header
+   ========================================================================== */
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  height: var(--header-h);
+  background: rgba(255,255,255,.88);
+  backdrop-filter: saturate(1.4) blur(12px);
+  -webkit-backdrop-filter: saturate(1.4) blur(12px);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--t-med) var(--ease);
+}
+.site-header.is-scrolled { border-bottom-color: var(--line); }
+.header-inner { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: var(--s-3); }
+.brand { display: block; flex: none; }
+.brand img { height: 26px; width: auto; }
+
+.site-nav { display: flex; align-items: center; gap: var(--s-5); }
+.site-nav ul { display: flex; gap: 36px; }
+.site-nav ul a {
+  position: relative; display: inline-block; padding: 6px 0;
+  font-size: 15px; font-weight: 500; color: var(--ink-2); text-decoration: none;
+  transition: color var(--t-fast) var(--ease);
+}
+.site-nav ul a::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: var(--stroke);
+  background: var(--teal); transform: scaleX(0); transform-origin: left;
+  transition: transform var(--t-med) var(--ease);
+}
+.site-nav ul a:hover, .site-nav ul a.is-current { color: var(--teal); }
+.site-nav ul a:hover::after, .site-nav ul a.is-current::after { transform: scaleX(1); }
+
+.nav-toggle {
+  display: none; width: 44px; height: 44px; padding: 0; border: 0; background: transparent;
+  align-items: center; justify-content: center;
+}
+.nav-toggle__bars, .nav-toggle__bars::before, .nav-toggle__bars::after {
+  display: block; width: 22px; height: var(--stroke); background: var(--teal);
+  transition: transform var(--t-med) var(--ease), opacity var(--t-fast);
+}
+.nav-toggle__bars { position: relative; }
+.nav-toggle__bars::before, .nav-toggle__bars::after { content: ""; position: absolute; left: 0; }
+.nav-toggle__bars::before { top: -7px; }
+.nav-toggle__bars::after { top: 7px; width: 14px; }
+.nav-toggle[aria-expanded="true"] .nav-toggle__bars { background: transparent; }
+.nav-toggle[aria-expanded="true"] .nav-toggle__bars::before { transform: translateY(7px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] .nav-toggle__bars::after { width: 22px; transform: translateY(-7px) rotate(-45deg); }
+
+/* ==========================================================================
+   Hero - interactive scan field
+   ========================================================================== */
+.hero {
+  position: relative; overflow: hidden;
+  min-height: clamp(620px, calc(100svh - var(--header-h)), 900px);
+  display: flex; flex-direction: column;
+  background: var(--white);
+  touch-action: pan-y;
+}
+.hero__field { position: absolute; inset: 0; width: 100%; height: 100%; }
+.hero__inner { position: relative; flex: 1; display: flex; align-items: center; padding-top: var(--s-6); padding-bottom: var(--s-5); pointer-events: none; }
+.hero__content { max-width: 760px; pointer-events: auto; }
+.hero__title {
+  font-family: var(--f-display); font-weight: 500;
+  font-size: clamp(42px, 5.6vw, 80px); line-height: 1.02; letter-spacing: -.03em;
+  text-wrap: balance;
+}
+.hero__lead { margin-top: var(--s-3); max-width: 50ch; font-size: clamp(17px, 1.4vw, 20px); color: var(--ink-2); }
+.hero__actions { margin-top: var(--s-5); display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* Signals: grid-aligned cards revealed by the scanner (left/top/height set in js/scanner.js) */
+.hero__signals { position: absolute; inset: 0; pointer-events: none; }
+.signal {
+  position: absolute; left: 0; top: 0; height: 25px;
+  display: flex; align-items: center; gap: 10px; padding: 0 12px 0 10px;
+  background: var(--white); box-shadow: inset 0 0 0 1.5px var(--teal);
+  font-size: 14px; font-weight: 500; line-height: 1; color: var(--teal); white-space: nowrap;
+  opacity: 0; clip-path: inset(0 100% 0 0);
+  transition: clip-path 440ms var(--ease-io), opacity 180ms linear;
+}
+.signal__num { font-family: var(--f-label); font-size: 12px; font-weight: 600; color: var(--ink-3); letter-spacing: .04em; }
+.signal.is-on { opacity: 1; clip-path: inset(0 0 0 0); }
+.js .hero__signals:not(.is-ready) { visibility: hidden; }
+/* Without JS the signals simply list under the copy */
+html:not(.js) .hero__signals { position: static; padding: 0 var(--gutter) var(--s-4); display: grid; gap: 8px; }
+html:not(.js) .signal { position: static; opacity: 1; clip-path: none; width: max-content; height: 32px; }
+/* Smaller screens: lighter, more compact signal cards (desktop untouched) */
+@media (max-width: 960px) {
+  .signal { gap: 8px; padding: 0 10px 0 8px; font-size: 13px; }
+  .signal__num { font-size: 11px; }
+}
+@media (max-width: 639px) {
+  /* Phones: compact single-line cards; each one is as wide as its text */
+  .signal { gap: 6px; padding: 0 8px 0 6px; font-size: 11.5px; box-shadow: inset 0 0 0 1px var(--teal); }
+  .signal__num { font-size: 10px; letter-spacing: .02em; }
+}
+
+/* ==========================================================================
+   Sections
+   ========================================================================== */
+.section { padding: clamp(80px, 11vw, 152px) 0; }
+.section--soft { background: var(--soft); }
+.section-head { margin-bottom: clamp(48px, 6vw, 80px); }
+.section-head--split { display: grid; grid-template-columns: 1.15fr 1fr; gap: var(--s-5); align-items: end; }
+.section-head--split .section-lead { margin-top: 0; }
+
+/* ---------- 01 Problem ---------- */
+.problem-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(40px, 6vw, 96px); align-items: start; }
+
+.visibility { padding: var(--s-4); background: var(--soft); box-shadow: inset 0 0 0 1px var(--line); }
+.visibility__map {
+  display: grid; grid-template-columns: repeat(12, 1fr); gap: 6px;
+}
+.vcell { aspect-ratio: 1; background: var(--white); box-shadow: inset 0 0 0 1px var(--line); transition: background-color 500ms var(--ease), box-shadow 500ms var(--ease); }
+.vcell.is-unknown { background: transparent; box-shadow: inset 0 0 0 1px var(--line-strong); opacity: .55; }
+.visibility.is-revealed .vcell.is-known { background: var(--teal); box-shadow: none; transition-delay: calc(var(--d) * 1ms); }
+.visibility.is-revealed .vcell.is-unknown { opacity: 1; transition: opacity 500ms var(--ease), background-color 500ms var(--ease); transition-delay: calc(var(--d) * 1ms); }
+.visibility.is-revealed .vcell.is-risk { background: var(--lime); box-shadow: inset 0 0 0 var(--stroke) var(--teal); opacity: 1; transition-delay: calc(900ms + var(--d) * 1ms); }
+.visibility__legend { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: var(--s-3); font-family: var(--f-body); font-size: 13px; color: var(--ink-2); }
+.legend-item { display: inline-flex; align-items: center; gap: 8px; }
+.legend-swatch { width: 10px; height: 10px; flex: none; }
+.legend-swatch--known { background: var(--teal); }
+.legend-swatch--unknown { box-shadow: inset 0 0 0 1px var(--line-strong); }
+.legend-swatch--risk { background: var(--lime); box-shadow: inset 0 0 0 var(--stroke) var(--teal); }
+
+
+.problem-list { display: grid; gap: 0; }
+.problem-item { display: grid; grid-template-columns: 24px 1fr; gap: var(--s-2); padding: var(--s-3) 0; border-top: 1px solid var(--line); }
+.problem-item:last-child { border-bottom: 1px solid var(--line); }
+/* The brand module replaces letters: one lime square per point, on the heading's first line */
+.problem-item__mark { width: 8px; height: 8px; margin-top: 11px; background: var(--lime); box-shadow: 0 0 0 1px rgba(15,42,42,.08); }
+.problem-item h3 { font-family: var(--f-display); font-weight: 500; font-size: 22px; line-height: 1.25; letter-spacing: -.01em; margin-bottom: 6px; }
+.problem-item p { color: var(--ink-2); font-size: 16px; }
+
+/* ---------- 02 Approach: lifecycle, one stage at a time ----------
+   Dark teal section. The timeline spans the full content width. With the
+   cursor over .approach__interactive, the mouse wheel steps through the
+   stages (js/main.js); at either end the page scrolls on normally. */
+.approach { position: relative; background: var(--teal); color: var(--white); }
+.approach .section-title { color: var(--white); max-width: 24ch; }
+.approach .section-lead { color: rgba(255,255,255,.74); max-width: 46em; margin-top: var(--s-2); }
+.approach__head { margin-bottom: clamp(48px, 7vw, 88px); }
+.approach__interactive { position: relative; }
+
+/* Timeline: first node at the left edge, last node at the right edge of the grid */
+.approach__line { position: relative; }
+/* Four equal columns: every marker sits at the centre of its column, so the spacing between
+   markers is identical and each label is centred under its square. The faint rail spans the
+   full content width; the fill runs from the first marker to the active one. js/main.js
+   measures the real marker centres (--x0, --x) so the indicator lands exactly on its square. */
+.approach__rail { position: absolute; top: 6px; left: 0; right: 0; height: var(--stroke); background: rgba(255,255,255,.14); }
+.approach__fill { position: absolute; left: var(--x0, 7px); top: 0; bottom: 0; width: calc(var(--x, 7px) - var(--x0, 7px)); background: #CBD3D2; transition: width 600ms var(--ease); }
+/* Indicator: a plain lime square that travels onto the active marker */
+.approach__marker { position: absolute; top: 0; left: var(--x, 7px); width: 14px; height: 14px; margin-left: -7px; background: var(--lime); z-index: 1; pointer-events: none; transition: left 600ms var(--ease); }
+.approach__steps { position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.astep {
+  display: flex; flex-direction: column; align-items: center; justify-self: center; gap: 16px; min-height: 44px; padding: 0 4px;
+  background: none; border: 0; text-align: center;
+  font-family: var(--f-label); font-size: 12px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase;
+  color: rgba(255,255,255,.55); transition: color var(--t-fast) var(--ease);
+}
+.astep:hover { color: rgba(255,255,255,.85); }
+.astep__node { width: 14px; height: 14px; background: var(--teal); box-shadow: inset 0 0 0 var(--stroke) rgba(255,255,255,.22); transition: background-color var(--t-med) var(--ease), box-shadow var(--t-med) var(--ease); }
+.astep.is-reached .astep__node { background: #CBD3D2; box-shadow: none; }
+.astep.is-active .astep__node { background: var(--lime); box-shadow: none; }
+.astep.is-active { color: var(--lime); }
+.approach :focus-visible { outline-color: var(--lime); }
+
+/* Stage: one at a time, all stacked in one cell so the height never jumps */
+.approach__stage { display: grid; margin-top: clamp(56px, 8vw, 96px); }
+.astage {
+  grid-area: 1 / 1; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: clamp(32px, 6vw, 112px); align-items: start;
+  opacity: 0; transform: translateY(16px); pointer-events: none;
+  transition: opacity 200ms var(--ease), transform 400ms var(--ease);
+}
+.astage.is-past { transform: translateY(-16px); }
+/* The outgoing stage clears quickly; the incoming one follows once it's gone */
+.astage.is-active { opacity: 1; transform: none; pointer-events: auto; transition: opacity 450ms var(--ease) 180ms, transform 600ms var(--ease) 180ms; }
+.astage__kicker { grid-column: 1; font-family: var(--f-label); font-size: 12px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--lime); margin-bottom: var(--s-2); }
+.astage__title { grid-column: 1; font-family: var(--f-display); font-weight: 500; font-size: clamp(30px, 3.4vw, 46px); line-height: 1.1; letter-spacing: -.02em; color: var(--white); }
+.astage__text { grid-column: 2; grid-row: 1 / span 2; align-self: end; font-size: clamp(17px, 1.4vw, 20px); line-height: 1.55; color: rgba(255,255,255,.78); max-width: 40ch; }
+/* Order: label, level, then the small chart underneath */
+.astage__effort { grid-column: 2; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; margin-top: var(--s-3); font-family: var(--f-label); font-size: 12px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.55); }
+.astage__effort b { font-weight: 500; color: var(--white); }
+.astage__effort .effort-bars { margin-top: 4px; }
+/* Stepped bars: one more step per stage */
+.effort-bars { display: inline-flex; align-items: flex-end; gap: 3px; height: 18px; }
+.effort-bars i { width: 6px; box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.3); }
+.effort-bars i:nth-child(1) { height: 6px; } .effort-bars i:nth-child(2) { height: 10px; }
+.effort-bars i:nth-child(3) { height: 14px; } .effort-bars i:nth-child(4) { height: 18px; }
+.effort-bars[data-level="1"] i:nth-child(-n+1),
+.effort-bars[data-level="2"] i:nth-child(-n+2),
+.effort-bars[data-level="3"] i:nth-child(-n+3),
+.effort-bars[data-level="4"] i:nth-child(-n+4) { background: var(--white); box-shadow: none; }
+
+/* Previous / next: visible on every device, essential on touch */
+.approach__controls { display: flex; align-items: center; justify-content: flex-end; gap: 8px; margin-top: clamp(40px, 6vw, 72px); }
+.approach__count { margin-right: auto; font-family: var(--f-label); font-size: 12px; font-weight: 500; letter-spacing: .08em; color: rgba(255,255,255,.55); }
+.approach__count b { font-weight: 500; color: var(--white); }
+.approach__arrow {
+  width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;
+  background: transparent; border: 0; color: var(--white); box-shadow: inset 0 0 0 1px rgba(255,255,255,.3);
+  transition: background-color var(--t-fast) var(--ease), color var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease), opacity var(--t-fast);
+}
+.approach__arrow:hover:not(:disabled) { background: var(--white); color: var(--teal); box-shadow: none; }
+.approach__arrow:disabled { opacity: .3; cursor: default; }
+.approach__arrow svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: square; stroke-linejoin: miter; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+
+/* ---------- 03 Process ----------
+   Desktop: heading and a vertical step list on the left; the selected step's
+   animation with its short description underneath on the right. */
+.process-section { padding: clamp(64px, 9vh, 120px) 0; }
+.process { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); column-gap: clamp(40px, 6vw, 104px); align-items: center; }
+.process__head { margin-bottom: clamp(28px, 5vh, 48px); }
+.process__tabs { position: relative; display: flex; flex-direction: column; padding-left: 24px; }
+.process__progress { position: absolute; left: 0; top: 0; bottom: 0; width: var(--stroke); background: var(--line); pointer-events: none; }
+.process__progress-fill { position: absolute; left: 0; top: 0; width: 100%; height: 25%; background: var(--teal); transform: translateY(calc(var(--step, 0) * 100%)); transition: transform var(--t-med) var(--ease); }
+.process__progress-fill::after { content: ""; position: absolute; left: -3px; top: calc(50% - 4px); width: 8px; height: 8px; background: var(--lime); }
+.process__tab {
+  display: flex; align-items: baseline; gap: 16px; min-height: 44px; padding: 13px 0; text-align: left;
+  background: none; border: 0; color: var(--ink-3);
+  transition: color var(--t-fast) var(--ease), transform var(--t-med) var(--ease);
+}
+.process__tab:hover { color: var(--ink-2); }
+.process__tab[aria-selected="true"] { color: var(--teal); transform: translateX(4px); }
+.process__num { font-family: var(--f-label); font-size: 12px; font-weight: 500; letter-spacing: .04em; }
+.process__name { font-family: var(--f-display); font-weight: 500; font-size: clamp(20px, 1.8vw, 26px); letter-spacing: -.01em; }
+
+.process__panels { min-width: 0; }
+.process__panel { display: flex; flex-direction: column; gap: var(--s-3); }
+.process__panel:focus-visible { outline-offset: 8px; }
+/* Full column width, so the right edge meets the content grid; on short screens the
+   box gets shorter and the diagram stays centred inside it */
+.process__visual { width: 100%; aspect-ratio: 400 / 280; max-height: max(300px, calc(100vh - var(--header-h) - 280px)); }
+.process__visual .diagram { width: 100%; height: 100%; }
+.process__copy h3 { font-family: var(--f-display); font-weight: 500; font-size: 22px; line-height: 1.2; letter-spacing: -.01em; margin-bottom: 6px; }
+.process__copy p { font-size: 16px; color: var(--ink-2); max-width: 52ch; }
+.process__copy, .process__visual { animation: panelIn 520ms var(--ease) both; }
+.process__copy { animation-delay: 80ms; }
+.process__panel.is-leaving .process__visual, .process__panel.is-leaving .process__copy { animation: panelOut 180ms var(--ease) forwards; }
+@keyframes panelIn { from { opacity: 0; transform: translateY(10px); } }
+@keyframes panelOut { to { opacity: 0; transform: translateY(-8px); } }
+
+.tick-list { margin-top: var(--s-3); display: grid; gap: 10px; }
+.tick-list li, .risk-list li, .cta__points li { position: relative; padding-left: 22px; font-size: 15px; }
+.tick-list li::before, .risk-list li::before, .cta__points li::before {
+  content: ""; position: absolute; left: 0; top: .62em; width: 8px; height: 8px; background: var(--teal);
+}
+
+.process__visual {
+  background:
+    linear-gradient(var(--line) 1px, transparent 1px) 0 0 / 40px 40px,
+    linear-gradient(90deg, var(--line) 1px, transparent 1px) 0 0 / 40px 40px,
+    var(--soft);
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+.diagram { width: 100%; height: auto; }
+.diagram text { font-family: var(--f-label); font-size: 11px; letter-spacing: .08em; fill: var(--ink-3); }
+.d-frame path, .d-bracket, .d-links path, .d-check { fill: none; stroke: var(--teal); stroke-width: 1.5; }
+
+/* Discover */
+.d-nodes rect { fill: var(--teal); opacity: 0; animation: nodeIn 380ms var(--ease) forwards; animation-delay: calc(300ms + var(--i) * 110ms); }
+.d-nodes rect.is-ghost { fill: var(--white); stroke: var(--teal); stroke-width: 1.5; }
+.d-sweep { fill: var(--lime); animation: sweepX 1800ms var(--ease-io) 200ms both; }
+@keyframes nodeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+@keyframes sweepX { from { transform: translateX(0); opacity: 1; } 90% { opacity: 1; } to { transform: translateX(316px); opacity: 0; } }
+
+/* Analyze */
+.d-device { fill: var(--teal); }
+.d-layer { fill: var(--white); stroke: var(--line-strong); stroke-width: 1; transform-box: fill-box; transform-origin: left; animation: growX 600ms var(--ease) both; animation-delay: calc(150ms + var(--i) * 120ms); }
+.d-hit { fill: var(--lime); stroke: var(--teal); stroke-width: 1.5; opacity: 0; animation: fadeIn 300ms var(--ease) 1500ms forwards; }
+.d-scanline { fill: var(--lime); animation: scanAnalyze 1600ms var(--ease-io) 300ms both; }
+@keyframes scanAnalyze { from { transform: translateX(0); } to { transform: translateX(186px); opacity: 0; } }
+@keyframes growX { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes fadeIn { to { opacity: 1; } }
+
+/* Prioritize */
+.d-bar { fill: var(--teal); opacity: .22; transform-box: fill-box; transform-origin: left; animation: growX 700ms var(--ease) both; animation-delay: calc(150ms + var(--i) * 110ms); }
+.d-bar--top { fill: var(--lime); opacity: 1; stroke: var(--teal); stroke-width: 1.5; }
+
+/* Mitigate */
+.d-peers rect { fill: var(--teal); }
+.d-links path { stroke: var(--line-strong); animation: cut 600ms var(--ease) 900ms forwards; }
+.d-boundary { fill: none; stroke: var(--teal); stroke-width: 1.5; stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 900ms var(--ease-io) 200ms forwards; }
+.d-target { fill: var(--lime); stroke: var(--teal); stroke-width: 1.5; animation: resolve 500ms var(--ease) 1500ms forwards; }
+.d-check { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 400ms var(--ease) 1800ms forwards; }
+@keyframes cut { to { opacity: .25; } }
+@keyframes resolve { to { fill: var(--white); } }
+
+/* ---------- 04 Devices: three full-bleed editorial image columns ----------
+   One column is always active. Hover, focus or tap moves it: the column
+   widens and lifts, its photo turns from greyscale to colour, a lime scan
+   line passes over it and its short brief opens in the white panel. */
+.dcols { display: flex; gap: 4px; width: 100%; height: clamp(520px, 74vh, 780px); padding-top: 12px; }
+.dcol {
+  position: relative; flex: 1 1 0; min-width: 0; overflow: hidden;
+  background: var(--teal); cursor: pointer;
+  transition: flex-grow 700ms var(--ease), transform 700ms var(--ease);
+}
+.dcol:focus-visible { outline-offset: 4px; }
+.dcol.is-active { flex-grow: 1.8; transform: translateY(-12px); cursor: default; }
+
+.dcol__media { position: absolute; inset: 0; overflow: hidden; }
+.dcol__media img, .dcol__placeholder {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  filter: grayscale(1) brightness(.82); transform: scale(1.04);
+  transition: filter 800ms var(--ease), transform 1100ms var(--ease), opacity 600ms var(--ease);
+}
+.dcol.is-active .dcol__media img, .dcol.is-active .dcol__placeholder { filter: grayscale(0) brightness(1); transform: scale(1); }
+/* Device photos: cropped around the device (--focus per image); hidden if the file is missing */
+.dcol__img { object-position: var(--focus, 50% 50%); }
+/* Loading state: the quiet tinted field shows until the photo has loaded, then the photo fades in.
+   A photo that fails to load simply leaves the field in place: no text is ever shown. */
+.js .dcol__img { opacity: 0; }
+.js .dcol__img.is-loaded { opacity: 1; }
+.dcol__img.is-missing { visibility: hidden; }
+/* Placeholder: a tinted field so the greyscale-to-colour change is visible before photos arrive */
+.dcol__placeholder {
+  display: flex; align-items: flex-start; padding: 20px;
+  background:
+    linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px) 0 0 / 24px 24px,
+    linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px) 0 0 / 24px 24px,
+    linear-gradient(165deg, #557471 0%, #2A4646 55%, #0F2A2A 100%);
+}
+
+/* Scan line: runs once, top to bottom, each time a column becomes active */
+.dcol__scan { position: absolute; inset: 0; pointer-events: none; }
+.dcol__scan::before {
+  content: ""; position: absolute; left: 0; right: 0; top: -64px; height: 64px;
+  background: linear-gradient(to bottom, rgba(197,237,71,0), rgba(197,237,71,.2) 96%, var(--lime) 96%);
+  opacity: 0;
+}
+.dcols.is-revealed .dcol.is-active .dcol__scan::before { animation: dcolScan 1300ms var(--ease-io) 150ms both; }
+@keyframes dcolScan {
+  0% { opacity: 1; top: -64px; }
+  90% { opacity: 1; }
+  100% { opacity: 0; top: 100%; }
+}
+/* The icon pair marks the scanned column: bracket top-right, lime square below-left of it */
+.dcol__mark { position: absolute; top: 20px; right: 20px; width: 28px; height: 28px; opacity: 0; transform: translate(-4px, 4px); transition: opacity 400ms var(--ease) 500ms, transform 400ms var(--ease) 500ms; }
+.dcol__mark::before { content: ""; position: absolute; right: 0; top: 0; width: 18px; height: 18px; border-top: var(--stroke) solid var(--white); border-right: var(--stroke) solid var(--white); }
+.dcol__mark::after { content: ""; position: absolute; left: 0; bottom: 0; width: 12px; height: 12px; background: var(--lime); }
+.dcol.is-active .dcol__mark { opacity: 1; transform: none; }
+
+/* White panel: title always; the brief opens on the active column */
+.dcol__panel { position: absolute; left: 0; right: 0; bottom: 0; padding: 18px 20px; background: var(--white); }
+.dcol__title { display: flex; align-items: baseline; gap: 10px; font-family: var(--f-display); font-weight: 500; font-size: 20px; line-height: 1.2; letter-spacing: -.01em; color: var(--teal); }
+.dcol__num { font-family: var(--f-label); font-size: 12px; font-weight: 500; letter-spacing: .04em; color: var(--ink-3); }
+.dcol__info { max-height: 0; opacity: 0; overflow: hidden; transition: max-height 500ms var(--ease), opacity 250ms var(--ease); }
+.dcol.is-active .dcol__info { max-height: 260px; opacity: 1; transition: max-height 700ms var(--ease) 200ms, opacity 500ms var(--ease) 350ms; }
+.dcol__scope { font-size: 14px; color: var(--ink-2); padding: 10px 0 14px; margin-bottom: 14px; border-bottom: 1px solid var(--line); }
+.risk-list { display: grid; gap: 8px; }
+.risk-list li { font-size: 15px; color: var(--ink); }
+.risk-list li::before { background: var(--lime); box-shadow: none; }
+
+/* Closing line under the device gallery: a short prompt and a link to the briefing form */
+/* Centred on the content grid; the same gap above it (from the gallery) and below it (to the section end) */
+.devices-section { --cta-space: clamp(56px, 7vw, 96px); padding-bottom: var(--cta-space); }
+.devices-cta { display: flex; flex-direction: column; align-items: center; text-align: center; margin-top: var(--cta-space); }
+.devices-cta .btn { margin-top: var(--s-3); }
+.devices-cta__title { font-family: var(--f-display); font-weight: 500; font-size: clamp(24px, 2.4vw, 32px); line-height: 1.15; letter-spacing: -.015em; color: var(--teal); }
+.devices-cta__text { margin-top: 8px; font-size: clamp(16px, 1.3vw, 18px); color: var(--ink-2); }
+
+/* ---------- 05 Capabilities ---------- */
+.caps { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+.cap { position: relative; padding: clamp(28px, 3vw, 44px); border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.cap h3 { font-family: var(--f-display); font-weight: 500; font-size: 22px; line-height: 1.2; margin: var(--s-4) 0 10px; }
+.cap p { font-size: 15px; color: var(--ink-2); max-width: 36ch; }
+.glyph { width: 48px; height: 48px; overflow: visible; }
+.glyph path, .glyph rect { fill: none; stroke: var(--teal); stroke-width: var(--stroke); stroke-linecap: square; stroke-linejoin: miter; vector-effect: non-scaling-stroke; }
+.glyph .g-fill { fill: var(--lime); }
+
+/* ---------- Layers (directly under the hero) ----------
+   One light-grey container, four equal cells, one glyph and label each. Informational,
+   so no hover or pointer states.
+   --flow is the shared gap between hero, layers and 01 / The problem. */
+.layers-strip { position: relative; background: var(--white); padding-top: var(--flow); }
+.layers { display: flex; flex-direction: column; align-items: center; gap: var(--s-4); }
+.layers__title { margin: 0; justify-content: center; text-align: center; }
+.layers__list { width: 100%; max-width: 1080px; display: grid; grid-template-columns: repeat(4, 1fr); background: var(--tile); }
+.layer {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
+  min-width: 0; padding: clamp(20px, 2.4vw, 30px) 12px;
+}
+.layer + .layer { border-left: 1px solid var(--line); }
+.layer__glyph { width: 36px; height: 36px; }
+.layer__name {
+  font-family: var(--f-label); font-size: 13px; font-weight: 500;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--ink);
+}
+#problem { padding-top: var(--flow); }
+#problem-title { max-width: 24ch; }
+
+/* ---------- Contact ---------- */
+.cta { position: relative; overflow: hidden; background: var(--teal); color: var(--white); padding: clamp(88px, 11vw, 152px) 0; }
+.cta__grid {
+  position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none;
+  background:
+    linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px) 0 0 / 48px 48px,
+    linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px) 0 0 / 48px 48px;
+  -webkit-mask-image: linear-gradient(105deg, transparent 30%, #000 75%);
+  mask-image: linear-gradient(105deg, transparent 30%, #000 75%);
+}
+/* js/main.js redraws the same grid on a canvas so tiles can react to the cursor */
+.cta__grid.is-live { background: none; }
+.cta__inner { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(48px, 7vw, 112px); align-items: start; }
+.cta__title { font-family: var(--f-display); font-weight: 500; font-size: clamp(36px, 4.6vw, 64px); line-height: 1.04; letter-spacing: -.025em; max-width: 14ch; text-wrap: balance; }
+.cta__lead { margin-top: var(--s-3); color: rgba(255,255,255,.78); max-width: 44ch; font-size: 18px; }
+.cta__points { margin-top: var(--s-4); display: grid; gap: 10px; }
+.cta__points li { color: rgba(255,255,255,.86); }
+.cta__points li::before { background: var(--lime); }
+
+.form { position: relative; background: var(--teal-90); padding: clamp(24px, 3.4vw, 44px); box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); }
+.form::before { content: ""; position: absolute; top: -1px; right: -1px; width: 28px; height: 28px; border-top: var(--stroke) solid var(--lime); border-right: var(--stroke) solid var(--lime); }
+.form__body { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 24px; }
+.field { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.field--full { grid-column: 1 / -1; }
+/* The submit button is sized by the form, not the shared CTA width: it spans the inner
+   content area, edge to edge with the fields above it */
+.form .btn--cta { grid-column: 1 / -1; width: 100%; margin-top: 8px; }
+.field label { font-family: var(--f-label); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: rgba(255,255,255,.72); }
+.optional { text-transform: none; letter-spacing: 0; color: rgba(255,255,255,.5); margin-left: 6px; }
+.req { margin-left: 4px; color: var(--white); font-weight: 500; }
+.field input, .field select, .field textarea {
+  width: 100%; min-height: 48px; padding: 12px 14px;
+  background: rgba(255,255,255,.04); color: var(--white);
+  border: 0; border-radius: 0; box-shadow: inset 0 0 0 1px rgba(255,255,255,.22);
+  transition: box-shadow var(--t-fast) var(--ease), background-color var(--t-fast);
+  -webkit-appearance: none; appearance: none;
+}
+.field textarea { resize: vertical; min-height: 96px; }
+.field input:hover, .field select:hover, .field textarea:hover { box-shadow: inset 0 0 0 1px rgba(255,255,255,.4); }
+.field input:focus, .field select:focus, .field textarea:focus { outline: none; box-shadow: inset 0 0 0 var(--stroke) var(--lime); background: rgba(255,255,255,.07); }
+.field.has-error input, .field.has-error select { box-shadow: inset 0 0 0 var(--stroke) #FF9C8A; }
+.field__error { min-height: 0; font-size: 13px; color: #FFB7A9; }
+.field__error:empty { display: none; }
+.select { position: relative; }
+.select::after { content: ""; position: absolute; right: 16px; top: 50%; width: 8px; height: 8px; margin-top: -6px; border-right: var(--stroke) solid var(--lime); border-bottom: var(--stroke) solid var(--lime); transform: rotate(45deg); pointer-events: none; }
+.select select { padding-right: 40px; cursor: pointer; }
+.select option { color: var(--teal); background: var(--white); }
+
+.form__success { padding: var(--s-4) 0; animation: panelIn 520ms var(--ease) both; }
+.form__success:focus { outline: none; }
+.form__success h3 { font-family: var(--f-display); font-weight: 500; font-size: 32px; margin: var(--s-3) 0 var(--s-1); }
+.form__success p { color: rgba(255,255,255,.8); }
+.success-mark { position: relative; display: block; width: 40px; height: 40px; }
+.success-mark::before { content: ""; position: absolute; left: 0; bottom: 0; width: 26px; height: 26px; background: var(--lime); }
+.success-mark::after { content: ""; position: absolute; right: 0; top: 0; width: 26px; height: 26px; border-top: var(--stroke) solid var(--white); border-right: var(--stroke) solid var(--white); }
+
+/* ---------- Footer ---------- */
+.site-footer { background: var(--white); padding-top: var(--s-7); }
+.footer-inner { display: flex; justify-content: space-between; align-items: flex-end; gap: var(--s-5); flex-wrap: wrap; padding-bottom: var(--s-5); }
+.footer-brand img { height: 30px; width: auto; }
+.footer-tagline { margin-top: var(--s-2); font-family: var(--f-label); font-size: 12px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); }
+.footer-nav ul { display: flex; flex-wrap: wrap; gap: 12px 32px; }
+.footer-nav a { font-size: 15px; text-decoration: none; color: var(--ink); background: linear-gradient(var(--teal), var(--teal)) 0 100% / 0 var(--stroke) no-repeat; padding-bottom: 2px; transition: background-size var(--t-med) var(--ease); }
+.footer-nav a:hover { background-size: 100% var(--stroke); }
+.footer-base { padding-top: var(--s-3); padding-bottom: var(--s-4); border-top: 1px solid var(--line); font-size: 13px; color: var(--ink-3); }
+
+/* ---------- Scroll reveal (only when JS is running) ---------- */
+.js [data-reveal] { opacity: 0; transform: translateY(18px); transition: opacity var(--t-slow) var(--ease), transform var(--t-slow) var(--ease); transition-delay: var(--reveal-delay, 0ms); }
+.js [data-reveal].is-revealed { opacity: 1; transform: none; }
+
+/* ---------- Back to top ---------- */
+.back-to-top {
+  position: fixed; z-index: 40;
+  right: max(16px, env(safe-area-inset-right)); bottom: calc(16px + env(safe-area-inset-bottom));
+  width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;
+  background: var(--white); color: var(--teal);
+  box-shadow: inset 0 0 0 1px var(--line-strong), 0 6px 18px rgba(15,42,42,.08);
+  opacity: 0; visibility: hidden; transform: translateY(8px);
+  transition: opacity var(--t-med) var(--ease), transform var(--t-med) var(--ease), visibility 0s linear var(--t-med), background-color var(--t-fast) var(--ease), color var(--t-fast) var(--ease);
+}
+.back-to-top.is-visible { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; }
+.back-to-top:hover { background: var(--teal); color: var(--lime); }
+.back-to-top svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: square; stroke-linejoin: miter; }
+@media (min-width: 961px) { .back-to-top { right: 24px; bottom: 24px; } }
+body.nav-open .back-to-top { visibility: hidden; opacity: 0; }
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+@media (max-width: 960px) {
+  :root { --header-h: 64px; }
+  .nav-toggle { display: inline-flex; }
+  .site-nav {
+    /* header has backdrop-filter, so it is the containing block: size explicitly */
+    position: absolute; top: var(--header-h); left: 0; right: 0; height: calc(100vh - var(--header-h)); height: calc(100dvh - var(--header-h));
+    flex-direction: column; align-items: stretch; gap: var(--s-4);
+    padding: var(--s-4) var(--gutter) var(--s-5);
+    background: var(--white); border-top: 1px solid var(--line);
+    visibility: hidden; opacity: 0; transform: translateY(-8px);
+    transition: opacity var(--t-med) var(--ease), transform var(--t-med) var(--ease), visibility 0s linear var(--t-med);
+    overflow-y: auto;
+  }
+  .site-nav.is-open { visibility: visible; opacity: 1; transform: none; transition-delay: 0s; }
+  .site-nav ul { flex-direction: column; gap: 0; }
+  .site-nav ul a { display: block; padding: 16px 0; font-family: var(--f-display); font-size: 21px; color: var(--teal); border-bottom: 1px solid var(--line); }
+  .site-nav ul a::after { display: none; }
+  .nav-cta { min-height: 52px; font-size: 15px; }
+  body.nav-open { overflow: hidden; }
+
+  .section-head--split, .problem-grid, .cta__inner { grid-template-columns: 1fr; }
+  .section-head--split { gap: 0; }
+  .section-head--split .section-lead { margin-top: var(--s-3); }
+
+  /* Process: heading, a compact 4-step selector, then the step's animation and text */
+  .process { display: block; }
+  .process__head { margin-bottom: var(--s-4); }
+  .process__tabs { flex-direction: row; padding-left: 0; margin-bottom: var(--s-4); border-bottom: 1px solid var(--line); }
+  .process__progress { top: auto; bottom: -1px; left: 0; width: 25%; height: var(--stroke); background: none; }
+  .process__progress-fill { height: 100%; transform: translateX(calc(var(--step, 0) * 100%)); }
+  .process__progress-fill::after { left: auto; right: 0; top: -3px; }
+  .process__tab { flex: 1 1 0; min-width: 0; flex-direction: column; gap: 2px; padding: 0 4px 14px 0; }
+  .process__tab[aria-selected="true"] { transform: none; }
+  .process__name { font-size: 18px; }
+  .process__visual { max-width: none; }
+
+  /* Devices: full-width panels stacked; the brief is always visible, no hover needed */
+  .dcols { flex-direction: column; height: auto; gap: 4px; padding-top: 0; }
+  .dcol { flex: none; display: flex; flex-direction: column; background: var(--white); cursor: default; }
+  .dcol.is-active { flex-grow: 0; transform: none; }
+  .dcol__media { position: relative; inset: auto; aspect-ratio: 16 / 9; }
+  .dcol__panel { position: static; padding: 20px var(--gutter) 24px; }
+  .dcol__info, .dcol.is-active .dcol__info { max-height: none; opacity: 1; }
+
+  .caps { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 600px) {
+  body { font-size: 16px; }
+  .layers__list { grid-template-columns: repeat(2, 1fr); }
+  .layer + .layer { border-left: 0; }
+  .layer:nth-child(even) { border-left: 1px solid var(--line); }
+  .layer:nth-child(n+3) { border-top: 1px solid var(--line); }
+  /* Phones: the hero and devices contact buttons span the content width between the page
+     margins, with label and square centred. The form button fills the form, inside its
+     padding; the menu button keeps its own style. */
+  .btn--cta:not(.nav-cta) { flex: none; width: 100%; }
+  .hero__content { width: 100%; }
+  .devices-cta { align-self: stretch; }
+
+  .visibility { padding: var(--s-2); }
+  .visibility__map { gap: 4px; }
+
+  /* Approach: one column, text under the title */
+  .astage { grid-template-columns: 1fr; }
+  .astage__text { grid-column: 1; grid-row: auto; margin-top: var(--s-2); }
+  .astage__effort { grid-column: 1; }
+  .astep { font-size: 11px; letter-spacing: .06em; }
+
+  .process__num { font-size: 11px; }
+  .process__name { font-size: 15px; }
+  .dcol__media { aspect-ratio: 4 / 3; }
+
+  .caps { grid-template-columns: 1fr; }
+  .form__body { grid-template-columns: 1fr; }
+  .footer-inner { flex-direction: column; align-items: flex-start; }
+  /* Two columns, three links each, filled top to bottom */
+  .footer-nav ul { display: grid; grid-template-columns: repeat(2, minmax(0, max-content)); grid-template-rows: repeat(3, auto); grid-auto-flow: column; gap: 14px 48px; }
+}
+
+@media (max-width: 380px) {
+  .process__name { font-size: 13px; }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 1ms !important; animation-delay: 0ms !important; transition-duration: 1ms !important; transition-delay: 0ms !important; }
+  .js [data-reveal] { transform: none; }
+  .dcol__scan { display: none; }
+}
+
+/* Narrow screens: the four signals sit in a band under the copy */
+@media (max-width: 960px) {
+  .hero { min-height: auto; }
+  .hero__inner { align-items: flex-start; padding-bottom: 260px; }
+}
+@media (max-width: 639px) {
+  /* Phones: tighter vertical rhythm so the copy, the button and all four signals fit the first screen */
+  .hero__inner { padding-top: var(--s-4); padding-bottom: 252px; }
+  .hero .eyebrow { margin-bottom: var(--s-2); }
+  .hero__lead { margin-top: var(--s-2); }
+  .hero__actions { margin-top: 28px; }
+}
+/* Short phone screens: the copy above the button tightens a little more (sizes stay readable),
+   so the button and all four signals still fit in the first screen */
+@media (max-width: 639px) and (max-height: 630px) {
+  .hero__inner { padding-top: 20px; }
+  .hero .eyebrow { margin-bottom: 12px; }
+  .hero__title { font-size: 38px; }
+  .hero__lead { margin-top: 12px; }
+  .hero__actions { margin-top: 20px; }
+}
+@media (max-width: 639px) and (max-height: 570px) {
+  .hero__inner { padding-top: 14px; }
+  .hero .eyebrow { margin-bottom: 10px; }
+  .hero__title { font-size: 33px; }
+  .hero__lead { margin-top: 10px; font-size: 15px; line-height: 1.5; }
+  .hero__actions { margin-top: 18px; }
+}
